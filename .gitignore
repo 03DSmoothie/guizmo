@@ -4,7 +4,6 @@ __pycache__/
 checkpoints/
 data/raw/
 data/processed/
-tokenizer/*.json
 .hf_cache/
 wandb/
 *.pt

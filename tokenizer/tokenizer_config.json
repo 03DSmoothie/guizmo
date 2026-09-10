@@ -1,0 +1,25 @@
+{
+  "vocab_size": 32000,
+  "vocab_reel": 17930,
+  "special": [
+    "<pad>",
+    "<s>",
+    "</s>",
+    "<unk>",
+    "<mask>",
+    "<user>",
+    "<guizmo>",
+    "<search>",
+    "</search>",
+    "<result>",
+    "</result>"
+  ],
+  "ids": {
+    "<pad>": 0,
+    "<s>": 1,
+    "</s>": 2,
+    "<unk>": 3,
+    "<mask>": 4
+  },
+  "type": "ByteLevelBPE"
+}
