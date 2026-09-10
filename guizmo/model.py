@@ -128,7 +128,11 @@ class GuizmoForCausalLM(nn.Module):
         logits = self.lm_head(x)
         loss = None
         if targets is not None:
-            loss = F.cross_entropy(logits.view(-1, logits.size(-1)), targets.view(-1), ignore_index=-100)
+            # LM causal : logits[i] predit targets[i+1]. Sans ce shift le
+            # modele voit deja le token cible (triche) -> loss ~0 des le debut.
+            shift_logits = logits[..., :-1, :].contiguous()
+            shift_targets = targets[..., 1:].contiguous()
+            loss = F.cross_entropy(shift_logits.view(-1, shift_logits.size(-1)), shift_targets.view(-1), ignore_index=-100)
         return logits, loss
 
     @torch.no_grad()

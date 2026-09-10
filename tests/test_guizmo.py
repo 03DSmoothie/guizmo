@@ -34,6 +34,18 @@ def test_mix_ratio():
     assert len(m) == 100
 
 
+def test_shifted_loss_sane():
+    """Garde-fou : sans shift la loss triche (~0). Avec shift, init ~ ln(vocab)."""
+    import math
+    cfg = GuizmoConfig.tiny()
+    cfg.vocab_size = 500
+    m = GuizmoForCausalLM(cfg)
+    torch.manual_seed(0)
+    x = torch.randint(0, 500, (2, 16))
+    _, loss = m(x, x)
+    assert 4.0 < loss.item() < 8.0, f"loss suspecte {loss.item():.3f} (init attendue ~ln(500)={math.log(500):.2f})"
+
+
 def test_search_detect():
     assert needs_search("C'est qui le dernier ballon d'or ?") is not None
     assert extract_search_query("bla <search>meteo Paris</search> bla") == "meteo Paris"

@@ -50,24 +50,29 @@ def main():
     it = iter(dl)
     import tqdm
     pbar = tqdm.tqdm(total=args.max_steps, desc="pretrain guizmo")
+    opt.zero_grad()
     while step < args.max_steps:
-        try:
-            b = next(it)
-        except StopIteration:
-            it = iter(dl)
-            b = next(it)
-        x = b["input_ids"].to(args.device)
+        acc_loss = 0.0
+        for _ in range(args.grad_accum):
+            try:
+                b = next(it)
+            except StopIteration:
+                it = iter(dl)
+                b = next(it)
+            x = b["input_ids"].to(args.device)
+            y = b["labels"].to(args.device)
+            _, loss = model(x, y)
+            (loss / args.grad_accum).backward()
+            acc_loss += loss.item() / args.grad_accum
         lr_now = cosine_sched(step, 100, args.max_steps, args.lr, args.lr / 10)
         for pg in opt.param_groups:
             pg["lr"] = lr_now
-        opt.zero_grad()
-        _, loss = model(x, x)
-        (loss / args.grad_accum).backward()
         torch.nn.utils.clip_grad_norm_(model.parameters(), 1.0)
         opt.step()
+        opt.zero_grad()
         step += 1
         pbar.update(1)
-        pbar.set_postfix(loss=f"{loss.item():.3f}", lr=f"{lr_now:.2e}")
+        pbar.set_postfix(loss=f"{acc_loss:.3f}", lr=f"{lr_now:.2e}")
         if step % 500 == 0:
             torch.save({"model": model.state_dict(), "cfg": cfg.__dict__}, f"{args.out}/step{step}.pt")
     torch.save({"model": model.state_dict(), "cfg": cfg.__dict__}, f"{args.out}/final.pt")

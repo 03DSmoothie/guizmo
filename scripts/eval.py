@@ -17,7 +17,9 @@ def perplexity(model, tok, texts, device, max_len=256):
             x = torch.tensor([ids], dtype=torch.long).to(device)
             logits, _ = model(x, x)
             import torch.nn.functional as F
-            loss = F.cross_entropy(logits.view(-1, logits.size(-1)), x.view(-1), reduction="sum")
+            shift_logits = logits[..., :-1, :].contiguous()
+            shift_targets = x[..., 1:].contiguous()
+            loss = F.cross_entropy(shift_logits.view(-1, shift_logits.size(-1)), shift_targets.view(-1), reduction="sum")
             nll += loss.item()
             ntok += len(ids)
     return math.exp(nll / max(1, ntok))
