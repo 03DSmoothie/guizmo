@@ -1,0 +1,23 @@
+"""Sujets Raison E (81-100)."""
+RAISON_E = [
+("pourquoi les glacons sont troubles au milieu", "l'eau gele de l'exterieur vers l'interieur et pousse l'air au centre qui se coince. Eau bouillie 2 fois puis gelee doucement = glacons transparents comme au bar"),
+("pourquoi on eternue en regardant le soleil", "chez 1 personne sur 4 les nerfs des yeux et du nez sont trop proches, le signal lumineux deborde. C'est genetique et inoffensif"),
+("pourquoi le temps passe plus vite en vieillissant", "a 10 ans une annee c'est 10 pour cent de ta vie, a 40 ans 2.5 pour cent. Moins de nouveautes = moins de souvenirs = le cerveau juge que c'etait court. Change de routine pour ralentir"),
+("pourquoi les avions ont des hublots ronds", "les coins des hublots carres concentraient les contraintes et fissuraient. Le rond repartit la pression pareil partout, plus aucun angle faible"),
+("pourquoi on sale l'eau des pates", "ca assaisonne la pate de l'interieur, impossible a rattraper apres. 10g par litre, gout mer discret"),
+("pourquoi les chats petrissent", "c'est le geste du chaton qui stimule le lait de sa mere, garde comme doudou. Quand ton chat te petrit il te dit tu es ma famille"),
+("pourquoi on voit des etoiles filantes en aout", "la Terre traverse le nuage de la comete Swift-Tuttle chaque aout, les Perseides. Chaque grain brule et s'enflamme, pas d'etoile qui tombe"),
+("pourquoi on dit croissant pour la viennoiserie", "le croissant fete la victoire de Vienne sur les Ottomans en 1683, on a mange leur croissant de lune. Manger l'ennemi, delicieuse vengeance"),
+("pourquoi on a des bleus", "un choc casse des mini-vaisseaux, le sang s'etale bleu puis vert puis jaune. Glace vite = moins de bleu"),
+("pourquoi les serpents tirent la langue", "leur langue capte les odeurs et les apporte au palais, comme gouter l'air. Fourchue pour comparer gauche et droite et localiser"),
+("pourquoi on met des rideaux", "garder la chaleur et couper la lumiere. Epais l'hiver ca fait gagner 2 degres pres des fenetres"),
+("pourquoi on fete les anniversaires avec des bougies", "les Grecs mettaient des bougies pour Artemis comme la lune. Souffler en faisant un voeu viendrait d'Allemagne, la fumee porte le voeu"),
+("pourquoi les ordinateurs chauffent", "chaque milliard de calculs dissipe de l'energie en chaleur. Sans ventilo la puce se coupe. Depoussierer = ordi plus rapide"),
+("pourquoi on compte en base 10", "parce qu'on a 10 doigts. Les Babyloniens comptaient en 60, il nous reste leurs 60 minutes. Les ordis comptent en 2, eux n'ont pas de doigts"),
+("pourquoi les feux d'artifice sont colores", "chaque metal brule d'une couleur : strontium rouge, baryum vert, sodium jaune, cuivre bleu"),
+("pourquoi le linge seche meme en hiver", "l'eau s'evapore des que l'air n'est pas sature, meme froid. Le vent accelere. Dehors l'hiver ca seche, juste plus lentement"),
+("pourquoi on a des rituels du matin", "le cerveau adore l'automatique au reveil, ca economise sa volonte. Meme rituel = plus d'energie pour ce qui compte"),
+("pourquoi les vaches meuglent", "faim, appel du veau, stress. Une vache isolee meugle pour retrouver le troupeau"),
+("pourquoi on applaudit", "frapper des mains = bravo ensemble, simple et rythme. Plus c'est synchro plus l'artiste kiffe"),
+("pourquoi le soir on a plus d'idees noires", "fatigue + obscurite = le cerveau rumine sans filtre. Jamais de grosse decision a 2h du mat, dors d'abord"),
+]

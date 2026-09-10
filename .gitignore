@@ -1,0 +1,12 @@
+# Guizmo — base complete
+__pycache__/
+*.pyc
+checkpoints/
+data/raw/
+data/processed/
+tokenizer/*.json
+.hf_cache/
+wandb/
+*.pt
+*.bin
+.venv/

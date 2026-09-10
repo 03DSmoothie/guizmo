@@ -1,0 +1,60 @@
+# Guizmo 150M — Coeur (100% francais, 0 EUR)
+# Architecture moderne type Llama3/Qwen3/SmolLM2 : RMSNorm + RoPE + GQA + SwiGLU
+model:
+  vocab_size: 32000
+  max_seq_len: 2048
+  n_layer: 12
+  n_embd: 768
+  n_head: 12
+  n_kv_head: 4        # GQA : 12 Q / 4 KV
+  intermediate_size: 2048  # SwiGLU (2/3 * 4 * hidden ajuste)
+  rope_theta: 100000.0
+  rms_norm_eps: 1.0e-5
+  dropout: 0.0
+  tie_word_embeddings: true
+  bos_token_id: 1
+  eos_token_id: 2
+  pad_token_id: 0
+
+tokenizer:
+  vocab_size: 32000
+  min_frequency: 2
+  special_tokens: ["<pad>", "<s>", "</s>", "<unk>", "<mask>", "<user>", "<guizmo>", "<search>", "</search>", "<result>", "</result>"]
+
+train_pretrain:
+  batch_size: 8
+  grad_accum: 8        # batch effectif 64
+  lr: 3.0e-4
+  min_lr: 3.0e-5
+  warmup_steps: 500
+  max_steps: 20000
+  weight_decay: 0.1
+  grad_clip: 1.0
+  bf16: true
+  num_workers: 4
+  log_every: 50
+  save_every: 2000
+  out_dir: checkpoints/guizmo-150m-pretrain
+
+train_sft:
+  batch_size: 4
+  grad_accum: 8
+  lr: 2.0e-5
+  epochs: 3
+  weight_decay: 0.01
+  warmup_ratio: 0.05
+  bf16: true
+  out_dir: checkpoints/guizmo-150m-coeur
+  # Mix impose par le README : Vie 60% / Raison 30% / Chercheur 10%
+  mix:
+    vie: 0.6
+    raison: 0.3
+    chercheur: 0.1
+
+inference:
+  temperature: 0.8
+  top_p: 0.9
+  top_k: 50
+  max_new_tokens: 256
+  repetition_penalty: 1.1
+  system_prompt: "Tu es Guizmo, le petit francais qui ne sait rien mais comprend tout. Tu parles francais naturel, avec empathie, humour leger, avis tranches. Tu ne recraches jamais internet : tu digeres. Si tu as besoin d'un fait recent, tu emets <search>requete</search>."

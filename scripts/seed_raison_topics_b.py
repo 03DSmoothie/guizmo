@@ -1,0 +1,23 @@
+"""Sujets Raison B (21-40)."""
+RAISON_B = [
+("pourquoi le savon lave", "le savon a deux bouts : un qui aime l'eau, un qui aime le gras. Il entoure la saleté grasse et l'arrache pour la mettre dans l'eau qui rince. Sans savon l'eau glisse sur le gras"),
+("pourquoi on transpire", "c'est ta clim perso. Quand tu chauffes, les glandes sortent de l'eau sur la peau. En s'evaporant elle pompe ta chaleur. D'ou boire quand il fait chaud, tu perds de l'eau"),
+("pourquoi les etoiles brillent la nuit seulement", "elles brillent tout le temps, mais le jour le soleil eclaire l'atmosphere qui devient un voile bleu trop lumineux. La nuit le voile tombe et on voit les etoiles"),
+("pourquoi le beton durcit", "c'est une reaction chimique, pas un sechage : le ciment + l'eau forment des cristaux qui s'accrochent entre eux. Ca prend des semaines, d'ou on arrose le beton frais pour qu'il durcisse bien"),
+("pourquoi on a des cernes", "la peau sous les yeux est ultra fine, quand t'es fatigue le sang stagne et se voit bleu sombre. Manque de sommeil + deshydratation = cernes. Eau + dodo, pas de miracle"),
+("pourquoi le pop-corn eclate", "chaque grain a une goutte d'eau dedans. Chauffee, elle devient vapeur et la pression monte jusqu'a ce que l'enveloppe explose. L'amidon gonfle d'un coup, c'est le pop"),
+("pourquoi les aimants attirent le fer", "dans le fer les mini-boussoles atomiques peuvent s'aligner. L'aimant les aligne toutes dans le meme sens et ca colle. Le bois ou le plastique n'ont pas ces boussoles, rien ne se passe"),
+("pourquoi on entend l'echo en montagne", "le son voyage et rebondit sur la paroi comme une balle. S'il revient apres 0.1 seconde ton cerveau l'entend comme un 2e son distinct. En piece petite ca revient trop vite, pas d'echo"),
+("pourquoi le lait tourne", "des bacteries mangent le sucre du lait et fabriquent de l'acide. L'acide fait cailler les proteines, ca sent aigre et ca fait des grumeaux. Le frigo ralentit les bacteries, d'ou le lait se garde froid"),
+("pourquoi on cligne des yeux", "chaque clin d'oeil etale une larme qui nettoie et hydrate ton oeil, comme un essuie-glace auto. Tu clignes 15 fois par minute sans y penser. Devant un ecran tu clignes moins, d'ou les yeux secs"),
+("pourquoi les feuilles tombent en automne", "l'arbre recupere le vert (chlorophylle) pour l'hiver et bouche les tuyaux vers la feuille. Sans vert on voit le jaune et l'orange qui etaient caches. Puis la feuille tombe, l'arbre economise l'eau"),
+("pourquoi le cafe reveille", "la cafeine ressemble a la molecule du sommeil et prend sa place sans l'activer. Ton cerveau ne recoit plus le signal fatigue pendant quelques heures. Apres, la vraie fatigue revient d'un coup, le fameux crash"),
+("pourquoi on a la chair de poule", "c'est un vieux reflexe animal : quand on avait des poils, les dresser nous faisait paraitre plus gros face au danger et gardait l'air chaud. Il nous reste le frisson sans les poils"),
+("pourquoi l'eau eteint le feu", "le feu a besoin de chaleur + combustible + oxygene. L'eau refroidit d'un coup et fait un rideau de vapeur qui bloque l'oxygene. Sauf sur l'huile : l'eau coule dessous et explose en vapeur, jamais d'eau sur feu d'huile"),
+("pourquoi les bananes murissent vite avec les pommes", "les pommes lachent de l'ethylene, un gaz signal muris vite. Les bananes l'entendent et accelerent. Astuce inverse : banane seule au frigo pour ralentir"),
+("pourquoi on reve", "ton cerveau trie la journee la nuit : il rejoue, range les souvenirs et evacue le stress sous forme d'histoires bizarres. D'ou les reves chelous apres une journee chargee, c'est du rangement"),
+("pourquoi le sel fait fondre la glace", "le sel gene l'eau qui veut se cristalliser en glace, ca baisse le point de congelation. La glace fond meme sous zero. D'ou le sel sur les routes l'hiver"),
+("pourquoi les pigeons hochent la tete en marchant", "leurs yeux ne bougent presque pas, donc ils stabilisent la tete pour voir net : tete fixe pendant que le corps avance, puis tete qui rattrape d'un coup. C'est leur stabilisateur d'image"),
+("pourquoi on a deux oreilles", "avec deux oreilles le cerveau compare le micro-retard du son entre gauche et droite et sait d'ou ca vient. Avec une seule tu entends mais tu localises mal"),
+("pourquoi le plastique met si longtemps a se degrader", "ses mega-molecules n'existent pas dans la nature, les microbes ne savent pas les manger. Le soleil les casse en micro-morceaux mais ca prend des siecles. D'ou trier et reutiliser"),
+]

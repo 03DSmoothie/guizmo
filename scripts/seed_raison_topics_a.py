@@ -1,0 +1,23 @@
+"""Sujets Raison A (1-20) : (question, explication pote). Style : imagine + exemple concret."""
+RAISON_A = [
+("pourquoi le ciel est bleu", "la lumiere du soleil c'est un mix de couleurs. Le bleu se disperse dans tous les sens dans l'air, bien plus que le rouge. Donc tes yeux recoivent du bleu de partout. Le soir la lumiere traverse plus d'air, le bleu s'est perdu, il reste orange et rouge"),
+("pourquoi on a des saisons", "c'est pas la distance au soleil, c'est l'inclinaison de la Terre. Imagine une lampe sur un ballon penche : quand ton cote penche vers la lampe c'est l'ete, rayons directs. Six mois plus tard ton cote penche de l'autre cote, c'est l'hiver"),
+("pourquoi le pain leve", "la levure c'est vivant, ca mange le sucre de la farine et ca fait des bulles de gaz. Ces bulles restent coincees dans la pate elastique comme des petits ballons. A la cuisson ca gonfle puis ca durcit, d'ou les trous dans la mie"),
+("pourquoi on eternue", "ton nez detecte un intrus, poussiere ou pollen. Il envoie un signal express au cerveau qui ordonne une expulsion d'air a 150 km/h. C'est ton systeme d'alarme qui fait le menage"),
+("pourquoi la mer est salee", "les rivieres arrachent des mineraux aux roches depuis des millions d'annees et les portent a la mer. L'eau s'evapore mais le sel reste. Donc ca se concentre, comme une soupe qui reduit"),
+("pourquoi on a sommeil le soir", "ton cerveau fabrique de la melatonine quand la lumiere baisse, c'est le signal dodo. Plus tu vois d'ecrans le soir plus tu retardes le signal. D'ou le conseil tel loin 1h avant"),
+("pourquoi le metal est froid au toucher", "il n'est pas plus froid, il pompe ta chaleur plus vite. Imagine deux bancs a la meme temperature, un en bois un en metal : le metal aspire ta chaleur donc ton cerveau dit froid"),
+("pourquoi les oignons font pleurer", "quand tu coupes, tu casses des cellules qui liberent un gaz irritant. Ce gaz monte aux yeux qui pleurent pour se proteger. Astuce de pote : couteau bien aiguise et oignon froid, moins de gaz"),
+("pourquoi le soleil se leve a l'est", "en fait il ne se leve pas, c'est la Terre qui tourne vers lui. On tourne d'ouest en est, donc le soleil apparait d'abord a l'est. Comme quand tu avances en voiture et que le paysage vient vers toi"),
+("pourquoi on a des empreintes digitales", "ce sont des rainures qui t'aident a agripper et a sentir les textures. Elles se forment avant la naissance au hasard, d'ou elles sont uniques meme chez les jumeaux"),
+("pourquoi le verre est transparent", "les photons de lumiere visible n'ont pas l'energie pour exciter les electrons du verre, donc ils passent au travers. C'est comme une foule qui laisse passer quelqu'un de trop petit pour etre attrape"),
+("pourquoi on baille", "c'est ton cerveau qui se refroidit et se reveille. Quand tu t'ennuies ou que t'es fatigue, bailler brasse de l'air frais et te remet en alerte. Et c'est contagieux parce qu'on est des etres sociaux"),
+("pourquoi les avions restent en l'air", "l'aile est courbee : l'air passe plus vite dessus que dessous, ca cree une aspiration vers le haut, la portance. Tant que l'avion va assez vite, la portance bat le poids"),
+("pourquoi on voit la lune le jour", "la lune est tres brillante car elle reflete le soleil, assez pour rester visible meme avec le ciel bleu. On la voit quand elle est du bon cote, le jour comme la nuit"),
+("pourquoi le miel ne perime pas", "il est trop sucre et trop acide pour les microbes, et les abeilles y ajoutent des enzymes antiseptiques. On a trouve du miel de 3000 ans encore bon dans des tombes egyptiennes"),
+("pourquoi on rougit", "quand t'es gene, l'adrenaline dilate les vaisseaux du visage pour preparer une reaction. Le sang afflue, ca chauffe et ca se voit. C'est ton corps qui dit je me sens expose"),
+("pourquoi les chats ronronnent", "le ronron c'est un massage vibratoire a 25 hertz qui apaise le chat et meme ses os. Il ronronne quand il est bien, mais aussi quand il stresse pour se calmer. Comme nous qui fredonnons"),
+("pourquoi il fait plus froid en montagne", "l'air se rarifie en montant donc il retient moins la chaleur du sol. Plus tu montes moins y'a de couverture. D'ou neige en haut meme en ete"),
+("pourquoi les pages d'un livre jaunissent", "le papier contient de la lignine qui s'oxyde a l'air et a la lumiere, comme une pomme coupee. Ca jaunit avec les annees, l'odeur de vieux livre c'est ca"),
+("pourquoi on a le hoquet", "ton diaphragme spasme, probablement parce que t'as mange trop vite ou bu gazeux. Le hic c'est tes cordes vocales qui se ferment d'un coup. Retenir son souffle augmente le CO2 et ca le stoppe souvent"),
+]

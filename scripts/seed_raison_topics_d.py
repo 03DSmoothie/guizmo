@@ -1,0 +1,23 @@
+"""Sujets Raison D (61-80)."""
+RAISON_D = [
+("pourquoi les bebes dorment autant", "leur cerveau construit des milliards de connexions, ca demande une energie folle. Dormir c'est quand le cerveau installe les mises a jour de la journee. D'ou 16h a la naissance, ca baisse en grandissant"),
+("pourquoi on a des frissons en ecoutant de la musique", "quand la melodie te surprend pile comme tu l'aimes, le cerveau lache de la dopamine, la molecule du plaisir. Les frissons c'est ton circuit recompense qui dit encore. Chacun a ses declencheurs"),
+("pourquoi les vieilles photos sont en noir et blanc", "les premiers films ne captaient que la luminosite, pas les couleurs. La couleur demandait 3 couches chimiques, cher et complique. Le noir et blanc a regne 100 ans avant de devenir un choix artistique"),
+("pourquoi on met les montres au poignet gauche", "la majorite est droitiere : montre a gauche ca gene moins pour ecrire et la couronne se regle de la main droite. Les gauchers la mettent souvent a droite, logique inverse"),
+("pourquoi les pizzas sont rondes et les boites carrees", "la pate s'etale naturellement en rond quand tu la tournes, et la boite carree se plie d'un seul carton sans dechet. Rond pour manger, carre pour transporter, chacun son metier"),
+("pourquoi on dit sante en trinquant", "au Moyen Age on buvait a la sante du roi pour montrer sa loyaute, puis a celle de chacun. Aujourd'hui c'est juste je te souhaite du bien. Et on se regarde dans les yeux, sinon 7 ans de malheur dit-on"),
+("pourquoi les stylos coulent en avion", "la pression cabine est plus basse qu'au sol, l'air coince dans la cartouche se dilate et pousse l'encre dehors. Astuce : stylo bille tete en haut ou cartouche pleine, moins d'air moins de fuite"),
+("pourquoi on a le nez qui coule quand il fait froid", "l'air froid et sec agresse ton nez qui fabrique du mucus pour le rechauffer et l'humidifier avant les poumons. Ca coule car il en fait trop. Echarpe sur le nez = moins de gouttes"),
+("pourquoi les chats detestent l'eau", "leur fourrure met des heures a secher et perd son isolation mouillee, plus l'odeur des produits les agresse. Certains chats aiment quand meme jouer au robinet, c'est l'eau stagnante imposee qu'ils fuient"),
+("pourquoi on compte en base 10", "parce qu'on a 10 doigts, les premiers calculs se faisaient dessus. Les Babyloniens comptaient en 60, il nous reste leurs 60 minutes et 360 degres. Les ordis comptent en 2, eux n'ont pas de doigts"),
+("pourquoi les feux d'artifice sont colores", "chaque metal brule d'une couleur : strontium rouge, baryum vert, sodium jaune, cuivre bleu. On melange les sels metalliques pour dessiner en couleurs dans le ciel"),
+("pourquoi on a des pellicules", "ton cuir chevelu renouvelle sa peau trop vite et les bouts morts tombent en paquets blancs au lieu d'invisibles. Stress, froid, lavages agressifs aggravent. Shampoing doux + bien rincer, ca calme souvent"),
+("pourquoi les routes ont des lignes blanches", "peinture claire = visible de nuit sous les phares. Pointilles = tu peux doubler, continues = non. C'est un langage mondial qui guide sans parler, d'ou les respecter sauve des vies"),
+("pourquoi on dit pomme de terre", "quand Parmentier l'a ramenee, elle ressemblait a une grosse pomme qui pousse en terre, pomme de terre. Avant on la croyait toxique, il a du ruser avec des champs gardes pour donner envie"),
+("pourquoi les ecrans fatiguent les yeux", "tu clignes 3 fois moins et tu fixes a distance constante, les muscles de l'accommodation se crispent. Regle 20-20-20 : toutes les 20 min regarde a 20 pieds pendant 20 secondes, ca detend"),
+("pourquoi on stocke le miel mais pas les abeilles l'hiver", "les abeilles restent en grappe dans la ruche et vibrent des ailes pour chauffer a 25 degres tout l'hiver en mangeant le miel stocke. Elles ne dorment pas, elles chauffent collectif"),
+("pourquoi les serrures se bloquent avec le froid", "l'humidite dedans gele et bloque le mecanisme, plus le metal se retracte. Un coup de degivrant ou cle chauffee dans la main, jamais d'eau chaude qui regele apres"),
+("pourquoi on applaudit", "frapper des mains fait un bruit fort et visible pour dire bravo ensemble. Les Romains agitaient des toges, le clap a gagne car simple et rythmé. Plus c'est synchro plus l'artiste kiffe"),
+("pourquoi le linge seche meme en hiver", "l'eau s'evapore des que l'air n'est pas sature, meme froid. Le vent accelere en emportant l'humidite. D'ou le linge seche dehors l'hiver s'il ne pleut pas, juste plus lentement"),
+("pourquoi on a des rituels du matin", "le cerveau adore l'automatique au reveil, ca economise sa volonte pour la journee. Meme rituel = moins de decisions = plus d'energie pour ce qui compte. D'ou café + meme ordre, ca marche"),
+]
