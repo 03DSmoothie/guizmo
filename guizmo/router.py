@@ -16,7 +16,7 @@ EMOTION_W = ("triste", "stress", "angoiss", "peur", "marre", "saoule", "ennuie",
              "seul", "pleure", "colere", "fatigu", "motive")
 AVIS_W = ("t'en penses", "ton avis", "tu preferes", "t'aimes", "conseil",
           "tu ferais quoi", "je fais quoi", "dois-je")
-COMPA_W = (" vs ", "compar", "difference", "mieux", "lequel", "laquelle")
+COMPA_W = (" vs ", " ou ", "compar", "difference", "mieux", "lequel", "laquelle")
 TUTO_W = ("comment", "tuto", "recette", "apprendre", "etape", "faire pour")
 ACTU_W = ("dernier", "derniere", "2024", "2025", "2026", "aujourd", "hier",
           "demain", "actu", "news", "score", "resultat", "prix", "meteo",
@@ -79,6 +79,7 @@ def _queries_for(intent, text, history):
         return []
     if intent == "emotion" and "?" not in text:
         return []
+    # V2 chercheur systematique : TOUT le reste passe au web (le nano ne sait rien)
     qs = [base]
     low = base.lower()
     if intent == "comparaison" and " ou " in low:

@@ -9,6 +9,7 @@ numpy>=1.26
 accelerate>=0.33.0
 evaluate>=0.4.2
 duckduckgo-search>=6.0.0
+ddgs>=8.0.0
 python-dotenv>=1.0.0
 gradio>=4.40.0
 pytest>=8.0.0

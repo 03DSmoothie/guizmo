@@ -1,6 +1,7 @@
 """Synthese V2 : transforme resultats web -> reponse Guizmo.
-Regle d'or : JAMAIS de recrachage. Toujours : empathie + 2-3 faits digeres
-+ avis tranche + relance. Si pas de resultats : dis-le + aide quand meme.
+Regle d'or : JAMAIS de recrachage. Toujours : INTENTION comprise + CONTEXTE
++ 2-3 faits digeres + avis tranche + relance. Si pas de resultats :
+dis-le + aide quand meme (jamais d'invention).
 """
 from .router import Route
 
@@ -19,11 +20,13 @@ def kin_from_intent(intent, history=None):
 
 def synth_prompt(user, rt, search_block):
     lines = [SYS_TON, "", f"Question : {user}",
-             f"Intention : {rt.intent} | Contexte : {rt.context_summary or '-'}"]
+             f"Intention : {rt.intent} | Contexte : {rt.context_summary or '-'}",
+             f"Requetes web : {' ; '.join(rt.queries) if rt.queries else '-'}"]
     if search_block:
         lines += ["", "Ce que le web dit :", search_block, "",
-                  "Consigne : digere en 3-5 phrases avec TON avis, pas de copier-coller. "
-                  "Termine par une relance."]
+                  "Consigne : 1) montre que tu as compris l'intention et le contexte, "
+                  "2) digere 2-3 faits en 3-5 phrases avec TON avis, jamais de copier-coller, "
+                  "3) termine par une relance."]
     else:
         lines += ["", "Pas de recherche : reponds direct, court, avec avis + relance."]
     return "\n".join(lines) + "\n<guizmo> "

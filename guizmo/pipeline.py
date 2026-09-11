@@ -1,5 +1,7 @@
 """Flux V2 chercheur systematique : route -> search x1-3 -> synthese.
-Le nano ne stocke rien : il comprend, cherche a chaque fois, synthetise.
+Le nano (~10M) ne stocke AUCUNE connaissance : il comprend INTENTION +
+CONTEXTE + QUESTION, cherche a chaque fois sur le web, synthetise.
+Seuls salutation / emotion pure repondent direct (pas de fait a chercher).
 """
 from .router import route
 from .search import web_search, format_for_coeur
@@ -36,7 +38,8 @@ def answer(user, history=None, gen_fn=None, max_results=4):
 
 def extractive(user, rt, blocks):
     import re
-    bullets = re.findall(r"^- (.+)$", blocks, re.M)
+    text = "\n".join(blocks) if isinstance(blocks, list) else blocks
+    bullets = re.findall(r"^- (.+)$", text, re.M)
     keep = [b.strip()[:220] for b in bullets if len(b.strip()) > 40][:4]
     if not keep:
         return fallback_answer(user, rt, 0)
