@@ -42,5 +42,13 @@ class GuizmoConfig:
         return cls(n_layer=6, n_embd=512, n_head=8, n_kv_head=2, intermediate_size=1024)
 
     @classmethod
+    def nano(cls) -> "GuizmoConfig":
+        """V2 chercheur systematique : ~8-12M, juste intention/contexte/reformulation.
+        Pas de connaissances stockees : il comprend, cherche, synthetise.
+        4 couches, 384 hidden, GQA 6Q/2KV, SwiGLU 768. Tourne sur CPU/Kaggle sans crash.
+        """
+        return cls(n_layer=4, n_embd=384, n_head=6, n_kv_head=2, intermediate_size=768)
+
+    @classmethod
     def coeur150m(cls) -> "GuizmoConfig":
         return cls()

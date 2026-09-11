@@ -46,7 +46,22 @@ def test_shifted_loss_sane():
     assert 4.0 < loss.item() < 8.0, f"loss suspecte {loss.item():.3f} (init attendue ~ln(500)={math.log(500):.2f})"
 
 
-def test_search_detect():
-    assert needs_search("C'est qui le dernier ballon d'or ?") is not None
-    assert extract_search_query("bla <search>meteo Paris</search> bla") == "meteo Paris"
-    assert needs_search("J'aime pas les maths") is None
+def test_router_v2():
+    from guizmo.router import route
+    assert route("Salut").intent == "salutation"
+    assert route("Salut").needs_search is False
+    assert route("Je suis triste ce soir").intent == "emotion"
+    assert route("C'est quoi le prix du bitcoin aujourd'hui ?").intent == "actu"
+    r = route("iPhone ou Samsung ?", None)
+    assert r.intent == "comparaison" and len(r.queries) >= 2
+    r2 = route("Et lui ?", [{"user": "Qui a gagne la coupe du monde 2022 ?"}])
+    assert r2.intent == "suivi" and "coupe du monde" in r2.queries[0].lower()
+    # V2 : cherche systematiquement sauf social/emotion pure
+    assert route("Qui a ecrit Les Miserables ?").needs_search is True
+
+
+def test_pipeline_no_hallucination():
+    from guizmo.pipeline import answer
+    txt, rt = answer("Salut")
+    assert "wesh" in txt.lower()
+    assert rt.needs_search is False
