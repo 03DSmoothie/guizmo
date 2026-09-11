@@ -1,4 +1,11 @@
-"""Config centralisee de Guizmo (Coeur 150M). Inspire Llama3 / Qwen3 / SmolLM2."""
+"""Guizmo V3 (post-crash Kaggle) : nano LEGER, ZERO connaissance stockee.
+Principe : INTENTION + CONTEXTE + QUESTION -> cherche a chaque fois -> synthetise.
+- Le nano apprend le FORMAT de routage (intent + requetes web), pas le monde.
+- Le monde vient du web (DDG + fallback Wikipedia FR), jamais de la memoire.
+- Seuls salutation / emotion pure repondent direct (rien a chercher).
+Tourne sur CPU : routeur regles + extractif par defaut, nano optionnel.
+Coeur 150M historique garde pour reference (configs d'origine Llama3/Qwen3-like).
+"""
 from dataclasses import dataclass, field
 
 

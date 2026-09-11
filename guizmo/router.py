@@ -13,14 +13,18 @@ SUIVI_RE = re.compile(r"^(et\s+(lui|elle|eux)|pourquoi(\s+pas)?\s*\??$|et pourqu
 DEF_RE = re.compile(r"(c'est quoi|qu'est-ce que|veut dire quoi|explique\w*\s+(moi\s+)?(pourquoi|comment|ce qu))", re.I)
 
 EMOTION_W = ("triste", "stress", "angoiss", "peur", "marre", "saoule", "ennuie",
-             "seul", "pleure", "colere", "fatigu", "motive")
+             "seul", "pleure", "colere", "fatigu", "motive", "deprime", "anxie")
 AVIS_W = ("t'en penses", "ton avis", "tu preferes", "t'aimes", "conseil",
           "tu ferais quoi", "je fais quoi", "dois-je")
 COMPA_W = (" vs ", " ou ", "compar", "difference", "mieux", "lequel", "laquelle")
 TUTO_W = ("comment", "tuto", "recette", "apprendre", "etape", "faire pour")
-ACTU_W = ("dernier", "derniere", "2024", "2025", "2026", "aujourd", "hier",
-          "demain", "actu", "news", "score", "resultat", "prix", "meteo",
-          "ballon d'or", "election", "sortie", "transfert")
+# V3 : mots actu FORTS (fait frais externe). "demain/hier/aujourd" seuls ne
+# suffisent plus -> sinon "mon exam demain" part en actu. Il faut une question
+# externe ou un marqueur fort (prix, meteo, score...).
+ACTU_FORT = ("dernier", "derniere", "actu", "news", "score", "resultat match",
+          "prix", "meteo", "ballon d'or", "election", "sortie film",
+          "transfert", "bitcoin", "cours bourse")
+ACTU_FAIBLE = ("2024", "2025", "2026", "aujourd", "hier", "demain")
 
 
 @dataclass
@@ -45,8 +49,19 @@ def detect_intent(text, history=None):
         return "suivi"
     if SALUT_RE.search(low) and len(t.split()) <= 6:
         return "salutation"
-    if any(w in low for w in ACTU_W):
+    # V3 : EMOTION et AVIS d'abord (etat perso > marqueur temporel).
+    # "Je suis stresse pour mon exam demain" -> emotion, pas actu.
+    if any(w in low for w in EMOTION_W) or low.startswith(
+            ("j'aime pas", "je suis ", "je me sens")):
+        if "pourquoi" in low and ("tort" in low or "raison" in low):
+            return "avis"
+        return "emotion"
+    if any(w in low for w in ACTU_FORT):
         return "actu"
+    if any(w in low for w in ACTU_FAIBLE) and "?" in t:
+        # "demain/hier" + vraie question externe -> actu, sinon avis/emotion
+        if not low.startswith(("je ", "mon ", "ma ", "mes ", "j'")):
+            return "actu"
     if DEF_RE.search(low) or low.startswith(("pourquoi", "comment se fait")):
         return "definition"
     if any(w in low for w in COMPA_W) and "?" in t:
@@ -55,11 +70,6 @@ def detect_intent(text, history=None):
         return "tuto"
     if any(w in low for w in AVIS_W) or low.startswith("tu "):
         return "avis"
-    if any(w in low for w in EMOTION_W) or low.startswith(
-            ("j'aime pas", "je suis ", "je me sens")):
-        if "pourquoi" in low and ("tort" in low or "raison" in low):
-            return "avis"
-        return "emotion"
     if "?" in t:
         return "factuel"
     return "avis"
