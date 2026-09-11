@@ -10,14 +10,6 @@ SYS_TON = ("Tu es Guizmo, pote francais : empathie d'abord, avis tranche, "
            "jamais robot, toujours une relance.")
 
 
-def kin_from_intent(intent, history=None):
-    if history:
-        for m in reversed(history[-2:]):
-            if isinstance(m, dict) and m.get("guizmo"):
-                return None
-    return None
-
-
 def synth_prompt(user, rt, search_block):
     lines = [SYS_TON, "", f"Question : {user}",
              f"Intention : {rt.intent} | Contexte : {rt.context_summary or '-'}",

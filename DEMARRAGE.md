@@ -1,3 +1,32 @@
+# DEMARRAGE GUIZMO (Windows / Kaggle / Colab, 0 EUR)
+
+## 0. V3 — LA VOIE PRINCIPALE (post-crash Kaggle, refonte 2026)
+Kaggle a crashé sur le pretrain 150M. Résultat : on a RÉUSSI la refonte encore
+plus légère que prévu. Guizmo ne stocke AUCUNE connaissance du monde.
+
+- **Nano (~10M)** : 4 couches / 384 hidden / GQA 6Q+2KV / SwiGLU — il apprend
+  UNIQUEMENT à lire la question et sortir le format
+  `<route> intention | requete1 ; requete2 </route>`.
+  Il comprend **INTENTION + CONTEXTE + QUESTION**, c'est tout.
+- **Yeux** : `guizmo/search.py` — DDG + fallback Wikipedia FR (sans clé).
+  Guizmo **cherche à chaque fois** sur internet : le savoir vient du web, jamais de sa mémoire.
+- **Synthèse** : `guizmo/pipeline.py` — faits digérés + avis + relance, ton pote.
+  Sans modèle chargé : synthèse extractive (il ne recrache que ce que le web a dit,
+  jamais d'invention). Salutation / émotion pure → réponse directe (rien à chercher).
+
+```powershell
+python -m scripts.build_router                                # dataset routage (>=787 ex)
+python -m scripts.train_router --nano --epochs 2              # ~2 min sur CPU
+python -m scripts.chat_v2                                     # CLI V3 (règles)
+python -m scripts.chat_v2 --routeur checkpoints/guizmo-nano-routeur/routeur-ep2.pt
+python app.py                                                 # démo web Gradio V3
+python -m pytest tests -q                                     # 7 passed
+```
+Le 150M (Coeur complet) reste optionnel en V1 : voir `colab_guizmo_150m.py`.
+
+---
+
+
 # DEMARRAGE GUIZMO (Windows, 0 EUR)
 
 ## 1. Comprendre (ton README)
@@ -34,7 +63,10 @@ pytest -q
 
 ## Structure
 ```
-configs/guizmo_150m.yaml  guizmo/config.py guizmo/model.py guizmo/tokenizer.py guizmo/data.py guizmo/search.py guizmo/converse.py
-scripts/build_datasets.py scripts/seed_data.py scripts/train_tokenizer.py scripts/train_pretrain.py scripts/train_sft.py scripts/eval.py scripts/chat.py
-app.py  tests/  requirements.txt
+guizmo/config.py nano()~10M + coeur150m()   guizmo/model.py (RMSNorm+RoPE+GQA+SwiGLU)
+guizmo/router.py routeur intention/contexte/requetes   guizmo/search.py DDG+Wiki
+guizmo/pipeline.py route->search->synthese   guizmo/synth.py prompts+fallbacks
+scripts/build_router.py scripts/train_router.py scripts/chat_v2.py   app.py (V3 web)
+scripts/build_datasets.py train_tokenizer/pretrain/sft/eval.py (V1 150M optionnel)
+tests/test_guizmo.py  data/seed/routeur.jsonl
 ```

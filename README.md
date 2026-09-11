@@ -63,3 +63,26 @@ C'est pour ça qu'il peut être petit et 0€. Parce que son Coeur de 150M ne fa
 On l'appelle officiellement :
 
 GUZIMO - Le petit LLM français qui ne sait rien, mais qui comprend tout.
+
+## V3 — La refonte (post-crash Kaggle, 2026) : encore plus fidèle à cette idée
+
+Kaggle a crashé sur le pretrain 150M. On en a tiré la conclusion ultime : si le
+savoir est dehors (internet), le Coeur n'a même pas besoin de 150M pour exister.
+
+**Guizmo V3 = nano ~10M qui ne stocke RIEN du monde :**
+- il lit ta phrase et comprend 3 choses : **l'INTENTION** (salut ? émotion ? avis ?
+  fait ? comparaison ? actu ?), le **CONTEXTE** (tes derniers messages), la
+  **QUESTION** (que chercher exactement).
+- il sort : `<route> intention | requete1 ; requete2 </route>`
+- puis il **cherche sur internet à chaque fois** (DuckDuckGo + fallback
+  Wikipedia FR, gratuit, sans clé), digère 2-3 faits et répond avec son ton :
+  empathie, avis tranché, relance. Jamais de recrachage, jamais d'invention
+  (synthèse extractive honnête si aucun modèle chargé).
+- seuls les sujets sociaux (salutation, vider son sac) répondent direct : rien
+  à chercher, juste à écouter.
+
+C'est exactement ton README : *"Le savoir, c'est dehors"* — poussé à la logique.
+Le fichier `colab_guizmo_150m.py` garde le Coeur 150M complet pour plus tard ;
+la voie principale tient sur CPU et ne crashera pas Kaggle.
+
+Pour lancer : voir `DEMARRAGE.md` §0 (build_router → train_router → chat_v2 / app.py).

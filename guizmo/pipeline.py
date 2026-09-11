@@ -10,6 +10,11 @@ from .synth import synth_prompt, fallback_answer
 
 def answer(user, history=None, gen_fn=None, max_results=4):
     rt = route(user, history)
+    return answer_with_route(user, rt, gen_fn=gen_fn, max_results=max_results)
+
+
+def answer_with_route(user, rt, gen_fn=None, max_results=4):
+    """Tourne avec une route externe (regles OU nano) : meme pipeline search->synth."""
     if not rt.needs_search:
         if gen_fn:
             return gen_fn(synth_prompt(user, rt, "")), rt

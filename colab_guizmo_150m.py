@@ -1,5 +1,7 @@
 # -*- coding: utf-8 -*-
-"""Notebook Colab/Kaggle 0 Euro : Guizmo Coeur 150M vrai (T4 gratuit).
+"""Notebook Colab/Kaggle 0 Euro : Guizmo Coeur 150M complet (T4 gratuit).
+NOTE 2026 : la voie PRINCIPALE V3 (nano ~10M + web, zero GPU) tourne partout,
+voir DEMARRAGE.md §0. Ce notebook = le Coeur 150M complet, OPTIONNEL.
 VALIDE le 2026-09-10 : OASST FR 249 paires OK sans login, Wikipedia FR OK sans
 login, CulturaX = GATED (login requis). Donc sur Colab/Kaggle :
   source auto = Wikipedia FR + OSCAR FR + OASST FR (tout sans login).

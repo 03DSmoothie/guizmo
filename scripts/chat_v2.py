@@ -1,14 +1,16 @@
-"""Inference CLI V2 : route -> search x1-3 -> synthese (extractive ou nano).
-Sans ckpt : pipeline extractive (zero hallucination). Avec --routeur :
-le nano genere les requetes, le pipeline garde le garde-fou regles.
+"""Inference CLI V3 : route (regles OU nano) -> search x1-3 -> synthese.
+Sans ckpt : regles + pipeline extractive (zero hallucination).
+Avec --routeur : le nano genere <route>intent | q1 ; q2</route>, on le parse
+et le MEME pipeline fait search + synthese. Si le nano sort du sale, fallback
+total sur le routeur a regles (garde-fou, jamais de crash).
 """
 import argparse
 import torch
 from guizmo.config import GuizmoConfig
 from guizmo.model import GuizmoForCausalLM
 from guizmo.tokenizer import GuizmoTokenizer
-from guizmo.pipeline import answer as pipe_answer
-from guizmo.router import route as rule_route
+from guizmo.pipeline import answer_with_route
+from guizmo.router import route as rule_route, Route, INTENTS
 
 
 def load_nano(ckpt, tok_dir, device):
@@ -25,6 +27,26 @@ def load_nano(ckpt, tok_dir, device):
     return m.to(device).eval(), tok
 
 
+def parse_route(raw, user):
+    """'<route>intent | q1 ; q2</route>' -> Route fiable (fallback regles si sale)."""
+    raw = raw.replace("</route>", "").strip()
+    intent, queries = None, []
+    if "|" in raw:
+        left, right = raw.split("|", 1)
+        cand = left.strip().split()[0] if left.strip() else ""
+        if cand in INTENTS:
+            intent = cand
+        queries = [q.strip() for q in right.split(";") if q.strip()][:3]
+    else:
+        queries = [raw.strip()[:120]] if raw.strip() else []
+    if intent is None:
+        return rule_route(user)  # garde-fou : nano a rate le format
+    if not queries:
+        queries = rule_route(user).queries
+    return Route(intent=intent, needs_search=bool(queries), queries=queries,
+                 context_summary="", confidence=0.6, reason="route nano")
+
+
 def main():
     ap = argparse.ArgumentParser()
     ap.add_argument("--tokenizer", default="tokenizer")
@@ -33,29 +55,30 @@ def main():
     ap.add_argument("--max_results", type=int, default=4)
     args = ap.parse_args()
 
-    gen = None
+    model = tok = None
     if args.routeur:
         model, tok = load_nano(args.routeur, args.tokenizer, args.device)
         print(f"nano routeur charge ({model.num_params()/1e6:.1f}M).")
     else:
-        print("Guizmo V2 (regles + web, zero hallucination). 'quit' pour sortir.")
-        tok = None
+        print("Guizmo V3 (regles + web, zero hallucination). 'quit' pour sortir.")
     hist = []
     while True:
         u = input("\nToi : ").strip()
         if u.lower() in ("quit", "exit"):
             break
-        if args.routeur:
+        if model is not None:
             prompt = f"<user> {u} <route> "
             ids = torch.tensor([tok.encode(prompt, add_bos=True, add_eos=False)],
                                dtype=torch.long).to(args.device)
             out = model.generate(ids, max_new_tokens=64, temperature=0.3, top_k=20)
-            raw = tok.decode(out[0].tolist())[len(tok.decode(ids[0].tolist())):]
-            print(f"  [route nano: {raw.strip()[:120]}]")
-            txt, rt = pipe_answer(u, hist)
+            gen = tok.decode(out[0].tolist())
+            raw = gen[len(tok.decode(ids[0].tolist())):]
+            rt = parse_route(raw, u)
+            print(f"  [route nano: {rt.intent} | {rt.queries}]")
         else:
-            txt, rt = pipe_answer(u, hist)
-            print(f"  [{rt.intent} | search={rt.needs_search} | q={rt.queries}]")
+            rt = rule_route(u)
+        txt, rt = answer_with_route(u, rt, max_results=args.max_results)
+        print(f"  [{rt.intent} | search={rt.needs_search} | q={rt.queries}]")
         print("Guizmo :", txt)
         hist += [{"user": u, "guizmo": txt}]
 
